@@ -7,12 +7,12 @@ using(SQLConnector Connection = new SQLConnector("Name of Connection String")
 {
   int Return = 0;
   // Fire the stored Procedure SetCurrentWorkspace with the given parameters UserID & WorkspaceID, the return value is placed intot Return
-  object Result = Connection.GetObjectSetFromSp("SetCurrentWorkspace", ref Return, UserID, WorkspaceID);
+  object Result = Connection.GetObjectSetFromSp("SetCurrentWorkspace", ref Return, Param1, Param2);
   return Result;
 }
 
 // Connect to a database via connection details, return a DataTableCollection object.
-using(SQLConnector Connection = new SQLConnector(ServerName, Database, Username, Password, 100)
+using(SQLConnector Connection = new SQLConnector(ServerName, Database, Param1, Param2, Param3, 100)
 {
   int Return = 0;
   DataTableCollection Result = Connection.GetDataSetFromSP("SetCurrentWorkspace", ref Return, UserID, WorkspaceID);
@@ -24,6 +24,6 @@ DataTableCollection Result = ExecuteSQLR("SELECT * FROM MyTable");
 
 
 // Execute a stored procedure with no results
-ExecuteSP("SetCurrentWorkspace", ref Return, UserID, WorkspaceID);
+ExecuteSP("SetCurrentWorkspace", ref Return, Param1);
 
 Stored procedure parameters a cached so that only a single DB run is fired after the initial hit.
