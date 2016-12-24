@@ -6,7 +6,7 @@ Use as follows
 using(SQLConnector Connection = new SQLConnector("Name of Connection String")
 {
   int Return = 0;
-  // Fire the stored Procedure SetCurrentWorkspace with the given parameters UserID & WorkspaceID, the return value is placed intot Return
+  // Fire the stored Procedure SetCurrentWorkspace with the given parameters Param1 & Param2, the return value is placed into Result
   object Result = Connection.GetObjectSetFromSp("SetCurrentWorkspace", ref Return, Param1, Param2);
   return Result;
 }
