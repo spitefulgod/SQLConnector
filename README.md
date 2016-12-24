@@ -23,6 +23,7 @@ using(SQLConnector Connection = new SQLConnector(ServerName, Database, Username,
 // Othe function, execute a simple SQL
 DataTableCollection Result = ExecuteSQLR("SELECT * FROM MyTable");
 
+
 // Execute a stored procedure with no results
 ExecuteSP("SetCurrentWorkspace", ref Return, UserID, WorkspaceID);
 
