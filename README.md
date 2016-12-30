@@ -11,7 +11,7 @@ The class can return a datatablecollection or an object (depending on the call),
 
 The object class is constructed in such a way that it can be returned, as is, from a webservice and will be converted to XML or JSON without additional changes.
 
-The stored procedure RETURN result is passed back as a ref int, this can be used for error checking (See below)
+The stored procedure RETURN result is passed back as a ref int, this can be used for error checking (See below) and is optional in all instances.
 
 ##Usage
 Connect to a database stored as a connection string, return the table as an object for passing back from a webservice as JSON
@@ -26,7 +26,7 @@ Connect to a database stored as a connection string, return the table as an obje
 
 Connect to a database via connection details, return a DataTableCollection object.
 
-	using(SQLConnector Connection = new SQLConnector(ServerName, Database, Username, Password, 100) // Last parameter is the pool size
+	using(SQLConnector Connection = new SQLConnector(ServerName, Database, Username, Password)
 	{
 		int Return = 0;
 		DataTableCollection Result = Connection.GetDataSetFromSP("SetCurrentWorkspace", ref Return, Param1, Param2);
@@ -35,10 +35,13 @@ Connect to a database via connection details, return a DataTableCollection objec
 
 Other function, execute a simple SQL, returning a Datatable collection
 
-	DataTableCollection Result = ExecuteSQLR("SELECT * FROM MyTable");
+	DataTable Result = ExecuteSQL("SELECT * FROM MyTable");
+	
+Same as above, but no results to be returned
 
+	ExecuteNRSQL("UPDATE MyTable SET Column1 = 0");
 
 Execute a stored procedure with no results
 
-	ExecuteSP("SetCurrentWorkspace", ref Return, Param1);
+	ExecuteSP("SetCurrentWorkspace", Param1);
 
